@@ -19,3 +19,6 @@ a:hover { color: var(--red); }
 input::placeholder { color: var(--muted); }
 .pill-btn { color: #fff; background: var(--ink); text-decoration: none; font-weight: 600; border-radius: 999px; }
 .pill-btn:hover { background: var(--red); color: #fff; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }

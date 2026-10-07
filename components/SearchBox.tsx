@@ -3,7 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 
-export default function SearchBox() {
+export default function SearchBox({ className = '' }: { className?: string }) {
   const router = useRouter()
   const pathname = usePathname()
   const params = useSearchParams()
@@ -32,7 +32,7 @@ export default function SearchBox() {
   }
 
   return (
-    <form onSubmit={onSubmit} role="search" className="flex h-[52px] min-w-0 max-w-[640px] flex-1 items-center gap-2.5 rounded-full bg-[#f3f3f4] pl-5 pr-2">
+    <form onSubmit={onSubmit} role="search" className={`flex h-[52px] min-w-0 items-center gap-2.5 rounded-full bg-[#f3f3f4] pl-5 pr-2 ${className}`}>
       <input
         name="q"
         value={value}

@@ -36,13 +36,13 @@ export default function ProjectGrid({ projects, categories }: { projects: Projec
 
   return (
     <div style={{ padding: '0 clamp(16px,4.6vw,72px)' }}>
-      <div className="flex flex-wrap items-center justify-between gap-4" style={{ padding: '40px 0 32px' }}>
-        <label className="relative flex flex-none items-center">
+      <div className="flex flex-col gap-4 pb-6 pt-5 md:flex-row md:flex-wrap md:items-center md:justify-between md:pb-8 md:pt-10">
+        <label className="relative order-2 flex flex-none items-center md:order-1">
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as 'recent' | 'az')}
             aria-label="Sort projects"
-            className="cursor-pointer appearance-none rounded-lg border border-[#e3e3e6] bg-white text-[15px] font-medium text-[#161c34]"
+            className="w-full cursor-pointer appearance-none rounded-lg border border-[#e3e3e6] bg-white text-[15px] font-medium text-[#161c34] md:w-auto"
             style={{ padding: '12px 44px 12px 16px' }}
           >
             <option value="recent">Recent</option>
@@ -50,19 +50,19 @@ export default function ProjectGrid({ projects, categories }: { projects: Projec
           </select>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#161c34" strokeWidth="2.5" className="pointer-events-none absolute right-4"><path d="m6 9 6 6 6-6" /></svg>
         </label>
-        <div className="flex flex-wrap justify-center gap-1">
+        <div className="no-scrollbar order-1 -mx-[clamp(16px,4.6vw,72px)] flex gap-2 overflow-x-auto px-[clamp(16px,4.6vw,72px)] md:order-2 md:mx-0 md:flex-wrap md:justify-center md:gap-1 md:overflow-visible md:px-0">
           {pills.map((c) => (
             <button
               key={c.label}
               onClick={() => setCategory(c.title)}
-              className={`cursor-pointer rounded-full border-0 text-[15px] font-semibold text-[#161c34] hover:text-[#ff0303] ${category === c.title ? 'bg-[#f3f3f4]' : 'bg-transparent'}`}
+              className={`flex-none cursor-pointer whitespace-nowrap rounded-full border border-[#e3e3e6] text-[15px] font-semibold text-[#161c34] hover:text-[#ff0303] md:border-transparent ${category === c.title ? 'bg-[#f3f3f4]' : 'bg-transparent'}`}
               style={{ padding: '10px 18px' }}
             >
               {c.label}
             </button>
           ))}
         </div>
-        <span className="min-w-[100px] flex-none text-right text-[14px] text-[#6b6f80]">
+        <span className="order-3 flex-none text-[14px] text-[#6b6f80] md:min-w-[100px] md:text-right">
           {filtered.length} {filtered.length === 1 ? 'project' : 'projects'}
         </span>
       </div>
