@@ -1,12 +1,21 @@
 'use client'
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
 
 export default function SearchBox() {
   const router = useRouter()
   const pathname = usePathname()
   const params = useSearchParams()
+  const urlQ = params.get('q') ?? ''
+  const [value, setValue] = useState(urlQ)
+  const [lastUrlQ, setLastUrlQ] = useState(urlQ)
+
+  // keep the box in sync when the URL changes from elsewhere (back button, logo click)
+  if (urlQ !== lastUrlQ) {
+    setLastUrlQ(urlQ)
+    setValue(urlQ)
+  }
 
   const update = (q: string, replace: boolean) => {
     const next = new URLSearchParams(params.toString())
@@ -19,16 +28,18 @@ export default function SearchBox() {
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    update(String(new FormData(e.currentTarget).get('q') ?? ''), false)
+    update(value, false)
   }
 
   return (
     <form onSubmit={onSubmit} role="search" className="flex h-[52px] min-w-0 max-w-[640px] flex-1 items-center gap-2.5 rounded-full bg-[#f3f3f4] pl-5 pr-2">
       <input
-        key={params.get('q') ?? ''}
         name="q"
-        defaultValue={params.get('q') ?? ''}
-        onChange={(e) => update(e.target.value, true)}
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value)
+          update(e.target.value, true)
+        }}
         placeholder="Search projects"
         aria-label="Search projects"
         className="min-w-0 flex-1 border-0 bg-transparent text-[15px] text-[#161c34] outline-none"
