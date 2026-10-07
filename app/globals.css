@@ -1,26 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #161c34;
+  --red: #ff0303;
+  --yellow: #fff000;
+  --surface: #f3f3f4;
+  --muted: #6b6f80;
+  --border: #e3e3e6;
+  --border2: #e7e7e9;
+  --green: #0a9a52;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff; color: var(--ink); font-family: var(--font-poppins), system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: var(--ink); }
+a:hover { color: var(--red); }
+::selection { background: var(--ink); color: var(--yellow); }
+input::placeholder { color: var(--muted); }
+.pill-btn { color: #fff; background: var(--ink); text-decoration: none; font-weight: 600; border-radius: 999px; }
+.pill-btn:hover { background: var(--red); color: #fff; }
