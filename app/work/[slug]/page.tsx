@@ -71,7 +71,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 </div>
               </div>
             </div>
-            <Pill pad="12px 20px" size={14} />
           </div>
 
           {p.cover?.asset && (
